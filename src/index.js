@@ -11,11 +11,21 @@ const config = {
     channelAccessToken: 'fXr3W72D9GLR9KYVj1zZFVdcnYvAvt/x5+UR44Ljt9vsE9Mw3hCCLZ7UWm9CmPIxgXguIp/i0NYhWKDmRQDH56Go0Mpy6ZeNs838ekP7s0nkDAoWeaamBio1qNOMJmVntSpWl2rmX273QPNWXJTCfQdB04t89/1O/w1cDnyilFU='
 };
 
+let store = {
+    user_id_1: {
+        todos: {
+            todo_id1: { text: 'aiueo', check: true },
+        }
+    },
+}
+
+
 const client = new line.Client(config);
 
 // ! ここから
 app.post("/webhook", line.middleware(config), async (req, res) => {
     const event = req.body.events[0];
+    console.log(event);
 
     const text = event.message.text;
 
@@ -56,7 +66,15 @@ app.post("/webhook", line.middleware(config), async (req, res) => {
     if (text === "作成") {
         result = await client.replyMessage(event.replyToken, {
             type: "text",
-            text: "seikou",
+            text: "入力してください",
+        });
+        let id = Date.now()
+        store.user_id_1.todos[id] = { text: 'added', check: false }
+    }
+
+    if (text === "閲覧") {
+        result = await client.replyMessage(event.replyToken, {
+
         });
     }
 
