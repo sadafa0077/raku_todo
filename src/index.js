@@ -7,8 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const config = {
-    channelSecret: '7ed43b3fd1b68c8d98825db51b7deded',
-    channelAccessToken: 'fXr3W72D9GLR9KYVj1zZFVdcnYvAvt/x5+UR44Ljt9vsE9Mw3hCCLZ7UWm9CmPIxgXguIp/i0NYhWKDmRQDH56Go0Mpy6ZeNs838ekP7s0nkDAoWeaamBio1qNOMJmVntSpWl2rmX273QPNWXJTCfQdB04t89/1O/w1cDnyilFU='
+    channelSecret: 'channelSecret',
+    channelAccessToken: 'channelAccessToken'
 };
 
 let store = {
