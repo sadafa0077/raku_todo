@@ -1,24 +1,18 @@
 "use strict";
 
+require('dotenv').config();
+
 const express = require("express");
 const line = require("@line/bot-sdk");
 const app = express();
+const prisma = require("@prisma/client");
 
 const PORT = process.env.PORT || 3000;
 
 const config = {
-    channelSecret: 'channelSecret',
-    channelAccessToken: 'channelAccessToken'
+    channelSecret: process.env.CHANNEL_SECRET,
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 };
-
-let store = {
-    user_id_1: {
-        todos: {
-            todo_id1: { text: 'aiueo', check: true },
-        }
-    },
-}
-
 
 const client = new line.Client(config);
 
@@ -68,8 +62,7 @@ app.post("/webhook", line.middleware(config), async (req, res) => {
             type: "text",
             text: "入力してください",
         });
-        let id = Date.now()
-        store.user_id_1.todos[id] = { text: 'added', check: false }
+
     }
 
     if (text === "閲覧") {
